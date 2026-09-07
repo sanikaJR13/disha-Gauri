@@ -78,7 +78,7 @@ export default function App() {
         >
           <main className="relative z-10">
             {/* 1. Congratulations Message */}
-            <HeroCongratulations config={config} />
+            <HeroCongratulations config={config} onReplayMystery={handleReplayMystery} />
 
             {/* 2. Photo Gallery & Memories */}
             <div id="photos-section">

@@ -7,20 +7,28 @@ export const defaultPersonalization = {
   role2: "Software Development Engineer",
   batchYear: "2026",
 
+  // Hero Section Main Photo Placeholder
+  // 📸 Uses the photo added to the public folder!
+  heroPhoto: "/hero-photo.png",
+
   // Page 1 Mystery Data
   page1: {
     buttonText: "OPEN AT YOUR OWN RISK 👀"
   },
 
-  // Page 2 - Section 1: Hero & Grand Reveal
+  // Page 2 - Section 1: Hero & Grand Reveal (Scrapbook Polaroid Style)
   hero: {
-    badge: "🎉 BIGGEST PLOT TWIST EVER 🎉",
-    headline: "CONGRATULATIONS",
-    subtitle: "From sharing a college room in the first year to officially joining the same company...",
-    mainTheme: "FROM ROOMMATES TO TEAMMATES! ❤️💼",
-    secondaryTagline: "SAME ROOM. SAME CHAOS. SAME COMPANY.",
-    revealBadge: "PLOT TWIST UNLOCKED 🤯",
-    companyNotice: "BOTH PLACED IN THE SAME COMPANY!"
+    badge: "PLOT TWIST UNLOCKED",
+    scriptTitle: "Congratulations",
+    subtitle: "From sharing a college room in the first year\nto starting a new chapter in the same company...",
+    taglineBadge: "YOU BOTH DID IT! ♡",
+    noteTopLeft: "Same Room\nSame Chaos\nSame Company ♡",
+    noteTopRight: "Roommates\nfor Life\n( now also\nColleagues! )\n♡",
+    stickyLeft: "First\nRoommates\n... ♡",
+    stickyRight: "... Now\nTeammates\n♡",
+    blobBottomLeft: "Grateful\nfor this\njourney ♡",
+    blobBottomRight: "On to\nbigger adventures!\n😊 ♡",
+    buttonText: "Let's Celebrate! →"
   },
 
   // Page 2 - Section 2: Photos & Memory Gallery

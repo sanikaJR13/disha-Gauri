@@ -17,6 +17,7 @@ export default function PersonalizeModal({
     role1: currentConfig.role1 || 'Software Development Engineer',
     role2: currentConfig.role2 || 'Software Development Engineer',
     batchYear: currentConfig.batchYear || '2026',
+    heroPhoto: currentConfig.heroPhoto || '',
   });
 
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -164,6 +165,20 @@ export default function PersonalizeModal({
                 onChange={handleChange}
                 placeholder="2026"
                 className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-slate-500 font-sans"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-mono font-bold text-slate-700 mb-1">
+                Main Hero Polaroid Photo URL (Optional)
+              </label>
+              <input
+                type="text"
+                name="heroPhoto"
+                value={formData.heroPhoto || ''}
+                onChange={handleChange}
+                placeholder="/hero-photo.jpg or https://..."
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-pink-500 font-sans"
               />
             </div>
 
