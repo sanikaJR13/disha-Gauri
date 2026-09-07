@@ -6,7 +6,6 @@ import { toggleAudio, isAudioEnabled } from './utils/audio';
 // Components
 import PageOneEntry from './components/PageOneEntry';
 import HeroCongratulations from './components/HeroCongratulations';
-import PhotoMemories from './components/PhotoMemories';
 import PersonalMessage from './components/PersonalMessage';
 import FinalSurprise from './components/FinalSurprise';
 import Footer from './components/Footer';
@@ -17,7 +16,11 @@ export default function App() {
     try {
       const saved = localStorage.getItem('gauri_disha_portal_config');
       if (saved) {
-        return { ...defaultPersonalization, ...JSON.parse(saved) };
+        return { 
+          ...defaultPersonalization, 
+          ...JSON.parse(saved),
+          personalMessage: defaultPersonalization.personalMessage 
+        };
       }
     } catch (e) {
       console.warn('Could not read saved config', e);
@@ -80,12 +83,7 @@ export default function App() {
             {/* 1. Congratulations Message */}
             <HeroCongratulations config={config} onReplayMystery={handleReplayMystery} />
 
-            {/* 2. Photo Gallery & Memories */}
-            <div id="photos-section">
-              <PhotoMemories config={config} />
-            </div>
-
-            {/* 3. Personal Message for Them */}
+            {/* 2. Personal Message for Them */}
             <PersonalMessage config={config} />
 
             {/* 4. One More Surprise & Box Telling to Cut the Cake */}

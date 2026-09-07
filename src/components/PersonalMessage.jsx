@@ -7,7 +7,7 @@ export default function PersonalMessage({ config }) {
   const user2 = config?.user2 || 'DISHA';
 
   return (
-    <section className="relative py-24 px-4 sm:px-6 max-w-4xl mx-auto select-none">
+    <section id="message-section" className="relative py-24 px-4 sm:px-6 max-w-4xl mx-auto select-none">
       
       {/* Background Soft Glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-rose-200/20 via-amber-200/20 to-transparent rounded-3xl blur-2xl pointer-events-none" />
@@ -58,23 +58,27 @@ export default function PersonalMessage({ config }) {
 
         {/* Paragraphs with Notebook Line Spacing */}
         <div className="space-y-6 text-base sm:text-lg leading-relaxed font-sans text-stone-700">
-          {config.personalMessage.paragraphs.map((p, idx) => (
-            <p key={idx} className="leading-relaxed">
+          {config?.personalMessage?.paragraphs?.map((p, idx) => (
+            <p key={idx} className="leading-relaxed whitespace-pre-line">
               {p}
             </p>
           ))}
 
           {/* Highlighted Quote Banner in Pastel Scrapbook Style */}
-          <div className="my-8 p-6 sm:p-8 rounded-2xl bg-amber-50/90 border-2 border-dashed border-amber-300 text-center shadow-2xs rotate-[-0.5deg]">
-            <span className="font-journal text-amber-700 text-lg block mb-1">⭐️ IMPORTANT ROOMMATE RULE ⭐️</span>
-            <h3 className="font-handwriting text-3xl sm:text-5xl font-black text-rose-600 leading-tight">
-              "{config.personalMessage.highlightQuote}"
-            </h3>
-          </div>
+          {config?.personalMessage?.highlightQuote && (
+            <div className="my-8 p-6 sm:p-8 rounded-2xl bg-amber-50/90 border-2 border-dashed border-amber-300 text-center shadow-2xs rotate-[-0.5deg]">
+              <span className="font-journal text-amber-700 text-lg block mb-1">⭐️ IMPORTANT ROOMMATE RULE ⭐️</span>
+              <h3 className="font-sans font-bold text-2xl sm:text-4xl text-rose-600 leading-tight">
+                "{config.personalMessage.highlightQuote}"
+              </h3>
+            </div>
+          )}
 
-          <p className="font-bold text-stone-900 whitespace-pre-line text-lg leading-relaxed">
-            {config.personalMessage.closing}
-          </p>
+          {config?.personalMessage?.closing && (
+            <p className="font-bold text-stone-900 whitespace-pre-line text-lg leading-relaxed">
+              {config.personalMessage.closing}
+            </p>
+          )}
         </div>
 
         {/* Bottom Signoff */}

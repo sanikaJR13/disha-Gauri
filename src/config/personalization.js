@@ -81,15 +81,14 @@ export const defaultPersonalization = {
   personalMessage: {
     heading: "💌 A SPECIAL MESSAGE FOR GAURI & DISHA",
     paragraphs: [
-      "Congratulations to both of you on this incredible achievement! ❤️",
-      "From becoming roommates in your very first year of college to standing here today with both of you starting your professional careers in the same company, your journey has been nothing short of legendary.",
-      "Through all the laughter, the inside jokes, the late-night conversations, exam stress, submissions, and unforgettable memories, one thing remained completely unshakable — your friendship.",
-      "Getting placed is a huge milestone. But getting to begin this new chapter alongside your favorite roommate makes it truly one of a kind.",
-      "May this new chapter bring both of you exciting opportunities, new learning, and countless reasons to celebrate.",
-      "Keep supporting each other. Keep laughing together. And most importantly..."
+      "And just like that, the journey continues… ❤️",
+      "एक शांत… आणि एक बोलकी! 🤫🗣️\nएकाच room मध्ये राहून somehow 4 वर्ष काढली… आणि आता चक्क एकाच company मध्ये! 😂💼",
+      "First year पासून roommate, partner-in-crime, एकमेकींच्या सगळ्या secrets ची witness… आणि आता officially colleagues! 🎉",
+      "But opposites do attract, आणि यांची friendship त्याचाच perfect example आहे! ❤️",
+      "Congratulations, girls! 🎓✨\nRoommates पासून colleagues पर्यंतचा हा प्रवास खरंच भारी आहे!"
     ],
-    highlightQuote: "DON'T LET THE CORPORATE WORLD REDUCE THE COMEDY. 😂❤️",
-    closing: "Congratulations once again, Gauri & Disha! 🚀💼🎉\nWishing you both an amazing future ahead.",
+    highlightQuote: "आता पुढेही एकमेकींचा डोकं खाण्याचा कार्यक्रम सुरूच राहणार! 😂",
+    closing: "Wishing you both a future full of success, growth, आणि भरपूर नवीन memories! 🚀❤️",
     signoff: "WITH LOTS OF LOVE & BEST WISHES ❤️"
   },
 

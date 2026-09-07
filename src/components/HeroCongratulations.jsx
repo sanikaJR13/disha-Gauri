@@ -14,7 +14,7 @@ export default function HeroCongratulations({ config, onReplayMystery }) {
   const heroPhoto = config?.heroPhoto || '/hero-photo.png';
 
   const handleScrollNext = () => {
-    const el = document.getElementById('photos-section');
+    const el = document.getElementById('message-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }

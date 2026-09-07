@@ -25,10 +25,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Quicksand"', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
-        handwriting: ['"Caveat"', '"Patrick Hand"', 'cursive'],
-        display: ['"Space Grotesk"', '"Outfit"', 'sans-serif'],
-        journal: ['"Patrick Hand"', '"Caveat"', 'cursive'],
+        sans: ['"Poppins"', '"Noto Sans Devanagari"', '"Quicksand"', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        handwriting: ['"Caveat"', '"Patrick Hand"', '"Noto Sans Devanagari"', 'cursive'],
+        display: ['"Space Grotesk"', '"Poppins"', '"Outfit"', 'sans-serif'],
+        journal: ['"Patrick Hand"', '"Caveat"', '"Noto Sans Devanagari"', 'cursive'],
       },
       animation: {
         'scan': 'scanLine 3s linear infinite',
