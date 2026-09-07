@@ -1,34 +1,51 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, LockOpen, Sparkles, Cake, Flame, Heart, RefreshCw } from 'lucide-react';
+import { Gift, LockOpen, Sparkles, Flame, Heart, ArrowRight } from 'lucide-react';
 import { triggerGrandCelebration, triggerStarBurst } from '../utils/confetti';
-import { playPartyPop, playSuccessFanfare } from '../utils/audio';
+import { playPartyPop, playSuccessFanfare, playScanBeep } from '../utils/audio';
 
 export default function FinalSurprise({ config }) {
   const [unlocked, setUnlocked] = useState(false);
   const [stage, setStage] = useState(0); 
-  // 0: Initial locked button
-  // 1: "WAIT... 👀"
-  // 2: "WHY ARE YOU STILL LOOKING AT THE WEBSITE? 😂"
-  // 3: "YOUR CAKE IS WAITING! 🎂🎉" -> "NOW GO CUT THE CAKE! ❤️🎂🚀"
+  // 0: Initial button
+  // 1: Decrypting steps
+  // 2: "WAIT... 👀"
+  // 3: "YOU TWO ACTUALLY GOT PLACED IN THE SAME COMPANY?! 😂"
+  // 4: "SAME ROOM -> SAME CHAOS -> SAME COMPANY" -> "🎂 YOUR CAKE IS WAITING! NOW CUT THE CAKE!"
   
+  const [decryptStep, setDecryptStep] = useState(0);
   const [candleLit, setCandleLit] = useState(true);
 
   const handleUnlock = () => {
     setUnlocked(true);
     setStage(1);
-    playPartyPop();
+    playScanBeep(600);
 
     setTimeout(() => {
-      setStage(2);
-      playPartyPop();
+      setDecryptStep(1);
+      playScanBeep(800);
+    }, 900);
+
+    setTimeout(() => {
+      setDecryptStep(2);
+      playScanBeep(1000);
     }, 1800);
 
     setTimeout(() => {
-      setStage(3);
+      setStage(2); // "WAIT... 👀"
+      playPartyPop();
+    }, 2800);
+
+    setTimeout(() => {
+      setStage(3); // "YOU TWO ACTUALLY GOT PLACED IN THE SAME COMPANY?! 😂"
+      playPartyPop();
+    }, 4500);
+
+    setTimeout(() => {
+      setStage(4); // Cake & Grand Celebration!
       playSuccessFanfare();
       triggerGrandCelebration();
-    }, 3800);
+    }, 6500);
   };
 
   const handleCandleClick = (e) => {
@@ -43,11 +60,11 @@ export default function FinalSurprise({ config }) {
 
   return (
     <section className="relative py-28 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-      {/* Background Ambience */}
+      {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Main Container */}
-      <div className="relative p-8 sm:p-14 rounded-3xl bg-slate-950/90 border-2 border-amber-500/40 shadow-[0_0_60px_rgba(245,158,11,0.2)] backdrop-blur-2xl">
+      {/* Main Card Container */}
+      <div className="relative p-8 sm:p-14 rounded-3xl bg-[#0B1020]/95 border-2 border-amber-500/50 shadow-[0_0_60px_rgba(245,158,11,0.2)] backdrop-blur-2xl">
         
         <AnimatePresence mode="wait">
           {!unlocked ? (
@@ -63,23 +80,23 @@ export default function FinalSurprise({ config }) {
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs font-mono text-amber-400 tracking-widest uppercase">
-                  CLASSIFIED FINAL TRANSMISSION
+                <span className="text-xs font-mono text-amber-400 tracking-widest uppercase font-bold">
+                  {config.finalSurprise.badge}
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white">
-                  {config.cakeSurprise?.heading || "🎁 ONE MORE SURPRISE..."}
+                  {config.finalSurprise.heading}
                 </h2>
                 <p className="text-sm sm:text-base text-slate-400 font-sans max-w-md mx-auto">
-                  One last secret message is encrypted in this portal. Click below to reveal it!
+                  {config.finalSurprise.description}
                 </p>
               </div>
 
               <button
                 onClick={handleUnlock}
-                className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-rose-500 to-pink-500 text-white font-display font-bold text-lg sm:text-xl shadow-[0_0_35px_rgba(245,158,11,0.5)] hover:shadow-[0_0_50px_rgba(245,158,11,0.8)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 overflow-hidden cursor-pointer"
+                className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-rose-600 text-white font-display font-extrabold text-lg sm:text-xl shadow-[0_0_35px_rgba(236,72,153,0.5)] hover:shadow-[0_0_50px_rgba(236,72,153,0.8)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 overflow-hidden cursor-pointer"
               >
                 <LockOpen className="w-6 h-6 text-white group-hover:rotate-12 transition-transform" />
-                <span>{config.cakeSurprise?.buttonText || "UNLOCK FINAL MESSAGE 🔓"}</span>
+                <span>{config.finalSurprise.buttonText}</span>
                 <Sparkles className="w-5 h-5 text-amber-200" />
               </button>
             </motion.div>
@@ -92,37 +109,70 @@ export default function FinalSurprise({ config }) {
             >
               {stage === 1 && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-4xl sm:text-6xl font-extrabold font-display text-amber-400 glow-text-gold animate-pulse py-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="space-y-3 py-8"
                 >
-                  {config.cakeSurprise?.waitText || "WAIT... 👀"}
+                  <div className="text-xl sm:text-2xl font-mono font-bold text-amber-300">
+                    {config.finalSurprise.decryptSteps[decryptStep]}
+                  </div>
+                  <div className="w-48 mx-auto bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+                    <motion.div
+                      className="h-full bg-amber-400"
+                      initial={{ width: '20%' }}
+                      animate={{ width: `${(decryptStep + 1) * 33}%` }}
+                      transition={{ duration: 0.7 }}
+                    />
+                  </div>
                 </motion.div>
               )}
 
               {stage === 2 && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-2xl sm:text-4xl font-extrabold font-display text-rose-300 glow-text-gold py-10"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-4xl sm:text-6xl font-extrabold font-display text-amber-400 glow-text-gold animate-pulse py-10"
                 >
-                  {config.cakeSurprise?.questionText || "WHY ARE YOU STILL LOOKING AT THE WEBSITE? 😂"}
+                  {config.finalSurprise.waitText}
                 </motion.div>
               )}
 
               {stage === 3 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-2xl sm:text-4xl font-extrabold font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-pink-400 glow-text-gold py-10 max-w-xl"
+                >
+                  {config.finalSurprise.plotTwistQuestion}
+                </motion.div>
+              )}
+
+              {stage === 4 && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: 'spring', stiffness: 200 }}
                   className="space-y-6 flex flex-col items-center"
                 >
+                  {/* Story Chain Badges */}
+                  <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-bold">
+                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
+                      SAME ROOM 🏠
+                    </span>
+                    <span className="text-amber-400">➜</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
+                      SAME CHAOS 😂
+                    </span>
+                    <span className="text-amber-400">➜</span>
+                    <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/30 to-cyan-500/30 border border-emerald-400 text-emerald-300">
+                      SAME COMPANY 💼
+                    </span>
+                  </div>
+
                   {/* Interactive Celebration Cake Card */}
                   <div
                     onClick={handleCandleClick}
-                    className="relative p-8 rounded-3xl bg-slate-900/90 border-2 border-amber-400/60 shadow-[0_0_50px_rgba(245,158,11,0.4)] cursor-pointer group hover:scale-105 transition-all"
+                    className="relative p-8 rounded-3xl bg-[#0D1225] border-2 border-amber-400/70 shadow-[0_0_50px_rgba(245,158,11,0.4)] cursor-pointer group hover:scale-105 transition-all"
                   >
                     {/* Candle Flame Indicator */}
                     <div className="flex justify-center items-center gap-3 mb-2">
@@ -144,36 +194,40 @@ export default function FinalSurprise({ config }) {
                       ))}
                     </div>
 
-                    {/* Cake Base */}
-                    <div className="text-6xl sm:text-7xl">
+                    {/* Cake Emoji Icon */}
+                    <div className="text-6xl sm:text-7xl select-none">
                       🎂
                     </div>
 
                     <div className="mt-3 text-[11px] font-mono text-amber-300">
-                      {candleLit ? "✨ Tap cake to make a wish & blow candles! ✨" : "🎉 Wish Granted! Tap to light again 🎉"}
+                      {candleLit ? "✨ Tap cake to make a wish & blow candles! ✨" : "🎉 Wish Granted! Tap to light candles again 🎉"}
                     </div>
                   </div>
 
-                  <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-emerald-300 glow-text-gold">
-                    {config.cakeSurprise?.cakeAnnouncement || "YOUR CAKE IS WAITING! 🎂🎉"}
+                  <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-pink-400 glow-text-gold">
+                    {config.finalSurprise.cakeAnnouncement}
                   </h2>
 
-                  <p className="text-base sm:text-xl text-slate-200 font-sans max-w-md">
-                    Congratulations once again, <span className="font-bold text-amber-300">{config.friendName}</span>! You made everyone proud!
-                  </p>
-
-                  <div className="p-4 rounded-2xl bg-gradient-to-r from-rose-600/30 via-amber-500/30 to-emerald-600/30 border border-amber-400/50">
+                  <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-orange-600/30 via-pink-600/30 to-rose-600/30 border border-amber-400/60 shadow-xl">
                     <h3 className="text-xl sm:text-3xl font-extrabold font-display text-white tracking-wide">
-                      {config.cakeSurprise?.finalCallToAction || "NOW GO CUT THE CAKE! ❤️🎂🚀"}
+                      {config.finalSurprise.callToAction}
                     </h3>
                   </div>
+
+                  <p className="text-sm sm:text-base font-bold font-mono text-emerald-400">
+                    CONGRATULATIONS, {config.user1} & {config.user2}!
+                  </p>
+
+                  <p className="text-base sm:text-xl font-extrabold font-display text-amber-300">
+                    {config.finalSurprise.finalSubtitle}
+                  </p>
 
                   <button
                     onClick={() => {
                       triggerGrandCelebration();
                       playPartyPop();
                     }}
-                    className="px-6 py-2.5 rounded-full bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-300 text-xs font-mono flex items-center gap-2 hover:scale-105 active:scale-95 transition"
+                    className="px-6 py-2.5 rounded-full bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-300 text-xs font-mono flex items-center gap-2 hover:scale-105 active:scale-95 transition cursor-pointer"
                   >
                     <Sparkles className="w-4 h-4 text-amber-400" />
                     <span>Trigger More Confetti Blast</span>

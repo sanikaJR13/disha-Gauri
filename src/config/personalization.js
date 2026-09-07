@@ -1,233 +1,271 @@
 export const defaultPersonalization = {
-  // Primary Personalization Variables
-  friendName: "Gauri",
-  yourName: "Disha",
+  // Primary Protagonists
+  user1: "GAURI",
+  user2: "DISHA",
   companyName: "QR Tech Innovations",
-  placementRole: "Software Development Engineer",
+  role1: "Software Development Engineer",
+  role2: "Software Development Engineer",
   batchYear: "2026",
-  
-  // Hero & Sub-messages
-  heroSubtitle: "From dreaming about the future to officially beginning your professional journey...",
-  heroCatchphrase: "YOU MADE IT! 🚀❤️",
-  
-  // Scanner Intro Steps
-  scannerConfig: {
-    scanTitle: "SCANNING QR CODE...",
-    scanSubtitle: "Biometric Data Matrix Syncing",
-    verifiedText: "QR CODE VERIFIED ✓",
-    searchingText: "SEARCHING FOR ACHIEVEMENT...",
-    identityText: "IDENTITY DETECTED 👀",
-    achievementText: "ACHIEVEMENT DETECTED ⚡",
-    unlockedText: "PLACEMENT SUCCESSFULLY UNLOCKED! 🎉",
+
+  // Page 1 Mystery Data
+  page1: {
+    warningTag: "WARNING ⚠️",
+    warningDescription: "This portal contains memories, emotional moments, and unnecessary amounts of roommate chaos.",
+    highlightText: "unnecessary amounts of roommate chaos",
+    relationshipStatus: "ROOMMATES SINCE FIRST YEAR ✓",
+    currentStatus: "ABOUT TO GET SURPRISED 👀",
+    buttonText: "OPEN AT YOUR OWN RISK 👀",
+    transitionSteps: [
+      "ACCESS GRANTED ✓",
+      "LOADING ROOMMATE HISTORY...",
+      "ANALYSING FRIENDSHIP DATA...",
+      "SEARCHING FOR THE BIGGEST PLOT TWIST..."
+    ]
   },
 
-  // Success Statistics (Verification HUD)
-  stats: [
-    { label: "Hard Work", status: "VERIFIED", icon: "CheckCircle2", color: "emerald" },
-    { label: "Talent & Skill", status: "VERIFIED", icon: "Sparkles", color: "emerald" },
-    { label: "Dedication & Consistency", status: "VERIFIED", icon: "ShieldCheck", color: "emerald" },
-    { label: "Late Night Preparation", status: "DETECTED ☕", icon: "Coffee", color: "amber" },
-    { label: "Challenges Overcome", status: "VERIFIED", icon: "Flame", color: "emerald" },
-    { label: "Interviews Survived", status: "VERIFIED", icon: "Award", color: "emerald" },
-    { label: "Placement", status: "SUCCESS 🎉", icon: "PartyPopper", color: "emerald" },
-    { label: "Future Potential", status: "UNLIMITED 🚀", icon: "Rocket", color: "cyan" },
-  ],
+  // Page 2 - Section 1: Hero & Grand Reveal
+  hero: {
+    systemUpdate: "SYSTEM UPDATE COMPLETE ✓",
+    upgradeNotice: "TWO STUDENTS SUCCESSFULLY UPGRADED TO CORPORATE EMPLOYEES 💼",
+    headline: "CONGRATULATIONS",
+    subtitle: "From sharing a room in the first year to sharing the same company in the future...",
+    mainTheme: "FROM ROOMMATES TO TEAMMATES. ❤️💼",
+    secondaryTagline: "SAME ROOM. SAME CHAOS. SAME COMPANY.",
+    plotTwistBadge: "PLOT TWIST DETECTED 🤯",
+    plotTwistReveal: "SAME COMPANY."
+  },
 
-  // Journey Timeline Milestones
-  journey: [
+  // Page 2 - Section 2: Roommate Consistency Report
+  consistencyReport: [
     {
-      icon: "GraduationCap",
-      title: "COLLEGE LIFE",
-      period: "The Foundation",
-      description: "Where the journey, lifelong friendships, and countless unforgettable memories first began.",
-      tag: "Memory Unlocked"
+      id: "room",
+      icon: "Home",
+      title: "ROOM SHARING CONSISTENCY",
+      status: "100% CONSISTENT ✓",
+      color: "emerald",
+      note: "Room assigned in 1st year. Never separated."
     },
     {
+      id: "comedy",
+      icon: "Laugh",
+      title: "COMEDY SESSIONS",
+      status: "EXTREMELY FREQUENT",
+      color: "amber",
+      note: "Laughing at the most unfunny things at 2 AM."
+    },
+    {
+      id: "friendship",
+      icon: "Heart",
+      title: "FRIENDSHIP",
+      status: "UNBREAKABLE",
+      color: "rose",
+      note: "Survived every exam, submission, and drama."
+    },
+    {
+      id: "study",
       icon: "BookOpen",
-      title: "LEARNING & PREPARATION",
-      period: "The Grind",
-      description: "Late nights, intense assignments, solving problems, and drinking countless cups of coffee.",
-      tag: "Skill Upgraded"
+      title: "STUDYING TOGETHER",
+      status: "SOMETIMES DETECTED 🤨",
+      color: "cyan",
+      note: "5 minutes studying, 55 minutes discussing life."
     },
     {
-      icon: "BrainCircuit",
-      title: "INTERVIEWS & CHALLENGES",
-      period: "The Test",
-      description: "Moments of nervousness, relentless mock tests, waiting for updates, and never losing faith.",
-      tag: "Resilience 100%"
+      id: "food",
+      icon: "Utensils",
+      title: "RANDOM FOOD DISCUSSIONS",
+      status: "CRITICALLY HIGH",
+      color: "amber",
+      note: "What to eat next is a state matter."
     },
     {
-      icon: "Laptop",
-      title: "THE OPPORTUNITY",
-      period: "The Spark",
-      description: "The moment preparation met opportunity, and your talent shined brighter than ever.",
-      tag: "Match Found"
+      id: "talk",
+      icon: "MessageSquare",
+      title: "TALKING INSTEAD OF SLEEPING",
+      status: "INVESTIGATION ONGOING...",
+      color: "purple",
+      note: "Sleep schedule destroyed by deep conversations."
     },
     {
-      icon: "PartyPopper",
-      title: "PLACED!",
-      period: "The Breakthrough",
-      description: "The moment everything changed — offer secured, hard work validated, and celebrations sparked!",
-      tag: "Offer Secured 🎯"
+      id: "clown",
+      icon: "Sparkles",
+      title: "UNNECESSARY COMEDY",
+      status: "APPROVED BY BOTH PARTIES",
+      color: "emerald",
+      note: "Shared sense of humor with 0% filter."
     },
     {
-      icon: "Rocket",
-      title: "A NEW CHAPTER",
-      period: "The Horizon",
-      description: "Entering the corporate world to create impact, inspire others, and conquer new frontiers.",
-      tag: "Journey Begins ✨"
+      id: "company",
+      icon: "Briefcase",
+      title: "GETTING PLACED IN THE SAME COMPANY",
+      status: "UNEXPECTED PLOT TWIST DETECTED 🚨",
+      color: "gold",
+      note: "Both placed in the exact same company!"
     }
   ],
 
-  // Personal Congratulations Letter
-  letter: {
-    greeting: "Dear Superstar,",
-    paragraphs: [
-      "Congratulations on achieving something you worked so relentlessly hard for!",
-      "This placement is not just about getting a job or an offer letter. It represents your patience, your sleepless study sessions, your courage to face challenges, and your unwavering dedication to reach this exact moment.",
-      "Seeing you achieve this brings immense happiness and pride. You truly deserve every bit of this success and the applause that comes with it.",
-      "Today, we celebrate your placement. But knowing your passion and drive, this is only the first of many incredible milestones you are going to conquer."
-    ],
-    highlight: "KEEP GOING. THE WORLD IS WAITING FOR YOU. 🚀❤️",
-    signoff: "Congratulations once again, superstar! 🎉",
-    footerSign: "With lots of love, proud cheers & hugs,"
-  },
+  // Page 2 - Section 3: Roommate Journey Timeline
+  timeline: [
+    {
+      year: "YEAR 1 🎓",
+      headline: "Two strangers entered the same room...",
+      description: "Little did they know that this roommate arrangement would become one of the most consistent and iconic things in their entire college journey.",
+      systemLog: "ROOM ASSIGNED SUCCESSFULLY. ESCAPE OPTION UNAVAILABLE. 😂",
+      icon: "GraduationCap",
+      badge: "The Origin"
+    },
+    {
+      year: "YEAR 2 😎",
+      headline: "The friendship was fully installed.",
+      description: "No longer just roommates. Official partners in crime, late-night tea gossip, and unlimited comedy.",
+      systemLog: "FRIENDSHIP VERSION 2.0 INSTALLED ✓",
+      features: [
+        "Inside jokes with 0 context",
+        "Random 3 AM conversations",
+        "Unlimited comedy routines",
+        "Shared survival strategies",
+        "Someone to tolerate your nonsense"
+      ],
+      icon: "Smile",
+      badge: "Version 2.0"
+    },
+    {
+      year: "YEAR 3 🤝",
+      headline: "The roommate consistency somehow continued...",
+      description: "By now, changing roommates would probably require unnecessary paperwork, emotional readjustment, and retraining a new person.",
+      systemLog: "ROOMMATE CONTRACT: AUTOMATICALLY RENEWED 😂",
+      icon: "Users",
+      badge: "Contract Renewed"
+    },
+    {
+      year: "FINAL YEAR 🚀",
+      headline: "Then came placement season...",
+      description: "The ultimate boss level. Stress, preparation, mock tests, and refreshing placement portals every 5 seconds.",
+      stressKeywords: [
+        "Interviews",
+        "Preparation",
+        "Stress",
+        "Waiting",
+        "Overthinking",
+        "Refreshing emails 400 times 😂"
+      ],
+      results: [
+        { name: "GAURI", status: "SELECTED ✓" },
+        { name: "DISHA", status: "SELECTED ✓" }
+      ],
+      plotTwistText: "ANALYSING PLACEMENT DATA... COMPANY MATCH DETECTED... 🤯 YES. THEY GOT PLACED IN THE SAME COMPANY!",
+      icon: "Rocket",
+      badge: "Boss Level Cleared"
+    }
+  ],
 
-  // QR Technology Section
-  qrTech: {
-    title: "QR = QUITE READY FOR THE NEXT CHAPTER 😎",
-    description: "Your system has been scanned and cross-referenced with industry standards. You are 100% matched for greatness.",
-    logs: [
-      "SCANNING APPLICANT MATRIX...",
-      "ANALYSING DEDICATION ALGORITHMS...",
-      "PROCESSING LATE NIGHT COFFEE BUFFERS...",
-      "VERIFYING TECHNICAL & CREATIVE TALENT...",
-      "STATUS: SUCCESSFULLY HIRED! 🎉"
-    ],
-    statusHeadline: "STATUS: READY FOR CORPORATE LIFE 💼",
-    statusPunchline: "Corporate life has been notified. Please prepare accordingly. 😂"
-  },
+  // Page 2 - Section 4: Plot Twist Odds Meter
+  odds: [
+    { label: "SAME COLLEGE", checked: true },
+    { label: "SAME ROOM", checked: true },
+    { label: "SAME FRIENDSHIP", checked: true },
+    { label: "SAME PLACEMENT SEASON", checked: true },
+    { label: "SAME COMPANY", checked: true }
+  ],
+  oddsResult: "THE UNIVERSE IS CLEARLY INVESTED IN THIS FRIENDSHIP. 😂❤️",
 
-  // Fun Achievement Badges
+  // Page 2 - Section 5: Compatibility Dashboard
+  compatibility: [
+    { label: "COMEDY COMPATIBILITY", percentage: 100, color: "from-amber-400 to-yellow-500" },
+    { label: "FRIENDSHIP LEVEL", percentage: 100, color: "from-rose-400 to-pink-500" },
+    { label: "CHAOS MANAGEMENT", percentage: 95, color: "from-emerald-400 to-teal-500" },
+    { label: "ROOMMATE CONSISTENCY", percentage: 100, color: "from-cyan-400 to-blue-500" },
+    { label: "SERIOUSNESS", percentage: 20, note: "😂", color: "from-purple-400 to-indigo-500" }
+  ],
+  compatibilityResult: "PERFECTLY MATCHED ROOMMATE DUO ❤️",
+
+  // Page 2 - Section 6: Achievements Unlocked
   achievements: [
     {
-      id: "survivor",
-      icon: "Trophy",
-      title: "INTERVIEW SURVIVOR",
-      description: "Successfully survived every technical round, HR grilling, and mystery question.",
-      level: "Level MAX",
-      badgeColor: "from-amber-500/20 to-yellow-500/20",
-      border: "border-amber-500/40"
+      id: "first_year",
+      icon: "GraduationCap",
+      title: "FIRST-YEAR ROOMMATES",
+      badge: "UNLOCKED",
+      desc: "Started as roommates on day one of college."
     },
     {
-      id: "coffee",
-      icon: "Coffee",
-      title: "CAFFEINE-POWERED",
-      description: "Fueled by coffee, determination, last-minute adrenaline, and deadlines.",
-      level: "99.9% C8H10N4O2",
-      badgeColor: "from-orange-500/20 to-amber-500/20",
-      border: "border-orange-500/40"
+      id: "comedy_partners",
+      icon: "Laugh",
+      title: "COMEDY PARTNERS",
+      badge: "LEGENDARY LEVEL",
+      desc: "Never failing to make each other laugh uncontrollably."
     },
     {
-      id: "brain",
-      icon: "Brain",
-      title: "BRAIN POWER ACTIVATED",
-      description: "Knowledge, logic, and creative problem-solving flawlessly deployed.",
-      level: "Over 9000",
-      badgeColor: "from-purple-500/20 to-indigo-500/20",
-      border: "border-purple-500/40"
+      id: "friendship_survivor",
+      icon: "Heart",
+      title: "FRIENDSHIP SURVIVOR",
+      badge: "100% SUCCESS RATE",
+      desc: "Survived 4 years of college chaos together."
     },
     {
-      id: "corporate",
+      id: "college_completed",
+      icon: "Award",
+      title: "COLLEGE COMPLETED",
+      badge: "ACHIEVEMENT UNLOCKED",
+      desc: "Degrees secured, memories archived."
+    },
+    {
+      id: "placed",
       icon: "Briefcase",
-      title: "CORPORATE MODE UNLOCKED",
-      description: "New professional character unlocked. Ready for meetings, impact, and coffee breaks.",
-      level: "Executive Ready",
-      badgeColor: "from-emerald-500/20 to-teal-500/20",
-      border: "border-emerald-500/40"
+      title: "PLACED",
+      badge: "MAJOR ACHIEVEMENT UNLOCKED",
+      desc: "Official transition from students to corporate powerhouses."
     },
     {
-      id: "future",
-      icon: "Rocket",
-      title: "FUTURE LOADING...",
-      description: "Please wait. Monumental accomplishments and adventures are currently compiling.",
-      level: "In Progress 🚀",
-      badgeColor: "from-cyan-500/20 to-blue-500/20",
-      border: "border-cyan-500/40"
-    },
-    {
-      id: "queen",
-      icon: "Crown",
-      title: "PLACEMENT QUEEN",
-      description: "Walked into the recruitment arena and left as the undisputed champion.",
-      level: "Royalty 👑",
-      badgeColor: "from-pink-500/20 to-rose-500/20",
-      border: "border-pink-500/40"
+      id: "same_company",
+      icon: "Sparkles",
+      title: "SAME COMPANY",
+      badge: "ULTRA RARE ACHIEVEMENT",
+      desc: "1 in a million plot twist: From Roommates to Teammates!",
+      isUltraRare: true
     }
   ],
 
-  // Memory Gallery Photos
-  memories: [
-    {
-      id: 1,
-      title: "Day One Memories 🎒",
-      caption: "Where our college journey and legendary laughs began!",
-      url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
-      rotation: "-rotate-2"
-    },
-    {
-      id: 2,
-      title: "Late Night Study Hustle 💻",
-      caption: "Debugging code, endless assignments, and surviving project submissions together.",
-      url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
-      rotation: "rotate-3"
-    },
-    {
-      id: 3,
-      title: "Chai & Canteen Breaks ☕",
-      caption: "Solving life's biggest problems over a hot cup of tea and snacks.",
-      url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
-      rotation: "-rotate-3"
-    },
-    {
-      id: 4,
-      title: "Placement Preparation 🎯",
-      caption: "All those mock interviews, resume reviews, and pep talks finally paid off!",
-      url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-      rotation: "rotate-2"
-    },
-    {
-      id: 5,
-      title: "The Unstoppable Squad 👯‍♀️",
-      caption: "Through every high and low, always cheering for each other's wins.",
-      url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
-      rotation: "-rotate-1"
-    },
-    {
-      id: 6,
-      title: "Celebration Vibes 🎉",
-      caption: "And today, the whole world celebrates YOU and your brand new offer!",
-      url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-      rotation: "rotate-3"
-    }
-  ],
+  // Page 2 - Section 7: Personal Message
+  personalMessage: {
+    heading: "💌 A MESSAGE FOR GAURI & DISHA",
+    paragraphs: [
+      "Congratulations to both of you on this incredible achievement. ❤️",
+      "From becoming roommates in your very first year to standing here today with both of you starting your professional journeys in the same company, your story has been an amazing one.",
+      "Through the laughter, the jokes, the random conversations, stressful days, happy moments, and countless memories, one thing remained completely consistent — your friendship.",
+      "Getting placed is a huge achievement. But getting to begin this new chapter alongside someone who has been part of your journey since the very beginning makes it even more special.",
+      "May this new journey bring both of you new opportunities, new memories, new challenges, and even bigger reasons to celebrate.",
+      "Keep supporting each other. Keep laughing together. And most importantly..."
+    ],
+    highlightQuote: "DON'T LET THE CORPORATE WORLD REDUCE THE COMEDY. 😂❤️",
+    closing: "Congratulations, Gauri & Disha! 🚀💼🎉\nWishing you both an amazing future ahead.",
+    signoff: "WITH BEST WISHES ❤️"
+  },
 
-  // Future Horizons
-  futureSteps: [
-    { icon: "Briefcase", title: "NEW EXPERIENCES", desc: "Exciting projects and professional milestones" },
-    { icon: "Brain", title: "NEW THINGS TO LEARN", desc: "Mastering technologies and conquering domain skills" },
-    { icon: "Globe", title: "NEW PEOPLE", desc: "Collaborating with brilliant minds and mentors" },
-    { icon: "Compass", title: "BIGGER DREAMS", desc: "Setting audacious goals and reaching beyond limits" },
-    { icon: "Trophy", title: "BIGGER ACHIEVEMENTS", desc: "Collecting wins, promotions, and recognition" }
-  ],
-
-  // Final Cake Surprise
-  cakeSurprise: {
+  // Page 2 - Section 8: One More Surprise & Cake
+  finalSurprise: {
+    badge: "CLASSIFIED FINAL TRANSMISSION",
     heading: "🎁 ONE MORE SURPRISE...",
-    buttonText: "UNLOCK FINAL MESSAGE 🔓",
+    description: "One final transmission has been encrypted for the two most consistent roommates in college history...",
+    buttonText: "🔓 UNLOCK FINAL MESSAGE",
+    decryptSteps: [
+      "DECRYPTING MESSAGE...",
+      "VERIFYING ROOMMATE HISTORY...",
+      "CONFIRMING PLOT TWIST..."
+    ],
     waitText: "WAIT... 👀",
-    questionText: "WHY ARE YOU STILL LOOKING AT THE WEBSITE? 😂",
-    cakeAnnouncement: "YOUR CAKE IS WAITING! 🎂🎉",
-    finalCallToAction: "NOW GO CUT THE CAKE! ❤️🎂🚀"
-  }
+    plotTwistQuestion: "YOU TWO ACTUALLY GOT PLACED IN THE SAME COMPANY?! 😂",
+    storyChain: ["SAME ROOM", "SAME CHAOS", "SAME COMPANY"],
+    cakeAnnouncement: "🎂 YOUR CAKE IS WAITING!",
+    callToAction: "NOW STOP SCROLLING AND CUT THE CAKE! 😂❤️🎉",
+    finalSubtitle: "FROM ROOMMATES TO TEAMMATES. ❤️💼🚀"
+  },
+
+  // Easter Eggs list
+  easterEggs: [
+    "Yes, you're still roommates. 😂",
+    "Achievement unlocked: Somehow survived each other.",
+    "Corporate HR has not been warned about the comedy partnership yet. 👀",
+    "Friendship data cannot be deleted.",
+    "Same company. Coincidence? We need to investigate."
+  ]
 };

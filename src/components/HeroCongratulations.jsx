@@ -1,0 +1,184 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, Briefcase, Award, CheckCircle2, ChevronDown, LockOpen, Heart, ArrowRight } from 'lucide-react';
+import { triggerPlacementConfetti } from '../utils/confetti';
+import { playSuccessFanfare } from '../utils/audio';
+
+export default function HeroCongratulations({ config, onEasterEgg }) {
+  const [cardsConnected, setCardsConnected] = useState(false);
+
+  const handleConnectClick = () => {
+    setCardsConnected(true);
+    triggerPlacementConfetti();
+    playSuccessFanfare();
+  };
+
+  const handleScrollNext = () => {
+    const el = document.getElementById('consistency-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <section className="relative min-h-[95vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-cyber-grid text-center overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] bg-gradient-to-tr from-emerald-500/15 via-cyan-500/10 to-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Floating particles */}
+      {[...Array(10)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            y: [0, -25, 0],
+            opacity: [0.3, 0.8, 0.3],
+          }}
+          transition={{
+            duration: 3 + (i % 4),
+            repeat: Infinity,
+            delay: i * 0.3,
+          }}
+          className="absolute w-1.5 h-1.5 rounded-sm bg-emerald-400 shadow-[0_0_8px_#22c55e]"
+          style={{
+            top: `${10 + i * 8}%`,
+            left: `${8 + i * 9}%`,
+          }}
+        />
+      ))}
+
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+        
+        {/* System Upgrade Notice Pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1225] border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-mono font-bold shadow-[0_0_20px_rgba(34,197,94,0.2)] backdrop-blur-md mb-6"
+        >
+          <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
+          <span>{config.hero.upgradeNotice}</span>
+        </motion.div>
+
+        {/* Main Congratulations Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="space-y-1"
+        >
+          <div className="text-xs sm:text-sm font-mono tracking-widest text-amber-400 uppercase font-bold">
+            🎉 CONGRATULATIONS 🎉
+          </div>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-display text-white tracking-tight leading-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-pink-400 glow-text-gold">
+              {config.user1}
+            </span>{' '}
+            <span className="text-slate-400">&</span>{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-300 glow-text-cyan">
+              {config.user2}
+            </span>
+          </h1>
+          <p className="text-sm sm:text-lg text-slate-300 font-sans max-w-xl mx-auto pt-2">
+            You both did it! {config.hero.subtitle}
+          </p>
+        </motion.div>
+
+        {/* SPECIAL VISUAL: DUAL IDENTITY CARDS MERGING */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-8 w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#0B1020]/90 border border-slate-800 shadow-2xl backdrop-blur-xl relative"
+        >
+          <div className="text-[11px] font-mono text-slate-400 mb-4 tracking-wider flex items-center justify-between">
+            <span>CAREER TELEMETRY MATCH</span>
+            <span className="text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              LIVE
+            </span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            
+            {/* Gauri Card */}
+            <motion.div
+              animate={cardsConnected ? { x: [0, 8, 0] } : {}}
+              className="flex-1 w-full p-4 rounded-2xl bg-[#0D1225] border border-amber-500/30 text-left shadow-lg"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-slate-400">CANDIDATE 01</span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold">
+                  PLACED ✓
+                </span>
+              </div>
+              <div className="text-lg font-bold font-display text-white mt-1">{config.user1}</div>
+              <div className="text-xs text-slate-400 font-mono mt-0.5">{config.role1}</div>
+            </motion.div>
+
+            {/* Merge Spark / Heart */}
+            <div className="flex items-center justify-center p-2 rounded-full bg-slate-900 border border-slate-700 text-amber-300 shadow-inner">
+              <Heart className="w-5 h-5 fill-rose-500 text-rose-500 animate-pulse" />
+            </div>
+
+            {/* Disha Card */}
+            <motion.div
+              animate={cardsConnected ? { x: [0, -8, 0] } : {}}
+              className="flex-1 w-full p-4 rounded-2xl bg-[#0D1225] border border-cyan-500/30 text-left shadow-lg"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-slate-400">CANDIDATE 02</span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold">
+                  PLACED ✓
+                </span>
+              </div>
+              <div className="text-lg font-bold font-display text-white mt-1">{config.user2}</div>
+              <div className="text-xs text-slate-400 font-mono mt-0.5">{config.role2}</div>
+            </motion.div>
+
+          </div>
+
+          {/* Connected Reveal Banner */}
+          <div className="mt-5 p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-slate-900 to-teal-950/60 border border-emerald-400/40 text-center shadow-lg">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-300 mb-0.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>{config.hero.plotTwistBadge}</span>
+            </div>
+            <div className="text-xl sm:text-2xl font-extrabold font-display text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-white to-cyan-300 glow-text-green">
+              {config.hero.plotTwistReveal} @ {config.companyName}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Major Theme Announcement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 space-y-2"
+        >
+          <div className="text-3xl sm:text-5xl font-extrabold font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-emerald-300 glow-text-gold">
+            {config.hero.mainTheme}
+          </div>
+          <div className="text-sm sm:text-base font-mono text-slate-300 font-semibold tracking-wide">
+            "{config.hero.secondaryTagline}"
+          </div>
+        </motion.div>
+
+        {/* Scroll CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-8"
+        >
+          <button
+            onClick={handleScrollNext}
+            className="group px-7 py-3.5 rounded-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-rose-600 text-white font-display font-bold text-sm sm:text-base shadow-[0_0_30px_rgba(236,72,153,0.4)] hover:shadow-[0_0_45px_rgba(236,72,153,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
+          >
+            <span>EXPLORE THE STORY</span>
+            <ChevronDown className="w-4 h-4 text-white group-hover:translate-y-1 transition-transform" />
+          </button>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}

@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { defaultPersonalization } from './config/personalization';
 import { toggleAudio, isAudioEnabled } from './utils/audio';
 
 // Components
-import ScannerIntro from './components/ScannerIntro';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import StatsSection from './components/StatsSection';
-import JourneyTimeline from './components/JourneyTimeline';
-import PersonalLetter from './components/PersonalLetter';
-import QRTechSection from './components/QRTechSection';
-import AchievementBadges from './components/AchievementBadges';
-import MemoryGallery from './components/MemoryGallery';
-import FutureLaunchpad from './components/FutureLaunchpad';
+import PageOneEntry from './components/PageOneEntry';
+import TopPortalNav from './components/TopPortalNav';
+import HeroCongratulations from './components/HeroCongratulations';
+import RoommateConsistencyReport from './components/RoommateConsistencyReport';
+import RoommateJourneyTimeline from './components/RoommateJourneyTimeline';
+import PlotTwistMeter from './components/PlotTwistMeter';
+import CompatibilityScore from './components/CompatibilityScore';
+import AchievementsUnlocked from './components/AchievementsUnlocked';
+import PersonalMessage from './components/PersonalMessage';
 import FinalSurprise from './components/FinalSurprise';
 import Footer from './components/Footer';
+import EasterEggToast from './components/EasterEggToast';
 import PersonalizeModal from './components/PersonalizeModal';
 
 export default function App() {
   const [config, setConfig] = useState(() => {
     try {
-      const saved = localStorage.getItem('qr_celebration_config');
+      const saved = localStorage.getItem('gauri_disha_portal_config');
       if (saved) {
         return { ...defaultPersonalization, ...JSON.parse(saved) };
       }
@@ -31,91 +31,126 @@ export default function App() {
     return defaultPersonalization;
   });
 
-  const [showScanner, setShowScanner] = useState(true);
+  const [currentPage, setCurrentPage] = useState('entry'); // 'entry' (Page 1) or 'celebration' (Page 2)
   const [isSoundOn, setIsSoundOn] = useState(true);
-  const [isPersonalizerOpen, setIsPersonalizerOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [activeEasterEgg, setActiveEasterEgg] = useState(null);
 
-  // Sound toggle handler
   const handleToggleSound = () => {
-    const newState = toggleAudio();
-    setIsSoundOn(newState);
+    const next = toggleAudio();
+    setIsSoundOn(next);
   };
 
-  // Replay scan experience
-  const handleReplayScan = () => {
-    setShowScanner(true);
+  const handleEnterCelebration = () => {
+    setCurrentPage('celebration');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Save updated config to state and localStorage
+  const handleReplayMystery = () => {
+    setCurrentPage('entry');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleTriggerEasterEgg = (context = "") => {
+    const list = config.easterEggs || defaultPersonalization.easterEggs;
+    const randomEgg = list[Math.floor(Math.random() * list.length)];
+    setActiveEasterEgg(randomEgg);
+    setTimeout(() => {
+      setActiveEasterEgg((curr) => (curr === randomEgg ? null : curr));
+    }, 3500);
+  };
+
   const handleSaveConfig = (updatedData) => {
-    const newConfig = { ...config, ...updatedData };
-    setConfig(newConfig);
+    const merged = { ...config, ...updatedData };
+    setConfig(merged);
     try {
-      localStorage.setItem('qr_celebration_config', JSON.stringify(newConfig));
+      localStorage.setItem('gauri_disha_portal_config', JSON.stringify(merged));
     } catch (e) {
       console.warn('Could not save config', e);
     }
   };
 
-  // Reset to default config
   const handleResetDefault = () => {
     setConfig(defaultPersonalization);
     try {
-      localStorage.removeItem('qr_celebration_config');
+      localStorage.removeItem('gauri_disha_portal_config');
     } catch (e) {
       console.warn('Could not reset config', e);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 font-sans selection:bg-emerald-500 selection:text-black relative">
+    <div className="min-h-screen bg-[#060810] text-slate-100 font-sans selection:bg-amber-400 selection:text-black relative">
       
-      {/* 1. Futuristic Scanner Intro Overlay */}
-      <AnimatePresence>
-        {showScanner && (
-          <ScannerIntro
+      {/* PAGE 1: MYSTERY ENTRY PAGE */}
+      {currentPage === 'entry' && (
+        <PageOneEntry
+          config={config}
+          onEnterCelebration={handleEnterCelebration}
+        />
+      )}
+
+      {/* PAGE 2: MAIN CELEBRATION EXPERIENCE */}
+      {currentPage === 'celebration' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          {/* Slim Top Navigation */}
+          <TopPortalNav
             config={config}
-            onComplete={() => setShowScanner(false)}
             isSoundOn={isSoundOn}
             toggleSound={handleToggleSound}
+            onReplayMystery={handleReplayMystery}
+            onOpenSettings={() => setIsSettingsOpen(true)}
           />
-        )}
-      </AnimatePresence>
 
-      {/* 2. Floating Navbar */}
-      <Navbar
-        config={config}
-        isSoundOn={isSoundOn}
-        toggleSound={handleToggleSound}
-        onReplayScan={handleReplayScan}
-        onOpenPersonalizer={() => setIsPersonalizerOpen(true)}
-      />
+          {/* Continuous Flow of Celebration Sections */}
+          <main className="relative z-10">
+            {/* Section 1: Grand Congratulations & Merging Cards */}
+            <HeroCongratulations config={config} onEasterEgg={handleTriggerEasterEgg} />
 
-      {/* 3. Main Celebration Single-Page Content */}
-      <main className="relative z-10">
-        <HeroSection config={config} />
-        <StatsSection config={config} />
-        <JourneyTimeline config={config} />
-        <PersonalLetter config={config} />
-        <QRTechSection config={config} />
-        <AchievementBadges config={config} />
-        <MemoryGallery config={config} />
-        <FutureLaunchpad config={config} />
-        <FinalSurprise config={config} />
-      </main>
+            {/* Section 2: Roommate Consistency Report */}
+            <RoommateConsistencyReport config={config} onEasterEgg={handleTriggerEasterEgg} />
 
-      {/* 4. Footer */}
-      <Footer config={config} onReplayScan={handleReplayScan} />
+            {/* Section 3: The Roommate Journey */}
+            <RoommateJourneyTimeline config={config} onEasterEgg={handleTriggerEasterEgg} />
 
-      {/* 5. Live Personalization Drawer / Modal */}
+            {/* Section 4: The Plot Twist Odds Meter */}
+            <PlotTwistMeter config={config} onEasterEgg={handleTriggerEasterEgg} />
+
+            {/* Section 5: Roommate Compatibility Score */}
+            <CompatibilityScore config={config} onEasterEgg={handleTriggerEasterEgg} />
+
+            {/* Section 6: Achievements Unlocked */}
+            <AchievementsUnlocked config={config} onEasterEgg={handleTriggerEasterEgg} />
+
+            {/* Section 7: Personal Message */}
+            <PersonalMessage config={config} />
+
+            {/* Section 8: One More Surprise & Interactive Cake */}
+            <FinalSurprise config={config} />
+          </main>
+
+          {/* Footer */}
+          <Footer config={config} onReplayMystery={handleReplayMystery} />
+        </motion.div>
+      )}
+
+      {/* Easter Egg Floating Toast */}
+      <EasterEggToast message={activeEasterEgg} onClose={() => setActiveEasterEgg(null)} />
+
+      {/* Settings / Personalization Drawer */}
       <PersonalizeModal
-        isOpen={isPersonalizerOpen}
-        onClose={() => setIsPersonalizerOpen(false)}
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
         currentConfig={config}
         onSaveConfig={handleSaveConfig}
         onResetDefault={handleResetDefault}
       />
+
     </div>
   );
 }
