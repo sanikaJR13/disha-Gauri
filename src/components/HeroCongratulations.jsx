@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Home, 
@@ -6,87 +6,18 @@ import {
   GraduationCap, 
   Briefcase, 
   ChevronDown, 
-  Upload, 
-  Camera,
-  Trash2,
-  ArrowRight,
-  Image as ImageIcon
+  ArrowRight
 } from 'lucide-react';
 
 export default function HeroCongratulations({ config, onReplayMystery }) {
-  // Read saved uploaded photo from localStorage or config
-  const [customPhoto, setCustomPhoto] = useState(() => {
-    try {
-      return localStorage.getItem('gauri_disha_hero_photo') || null;
-    } catch {
-      return null;
-    }
-  });
-
-  const [isDragging, setIsDragging] = useState(false);
-  const fileInputRef = useRef(null);
-
-  // Active photo: uploaded > config.heroPhoto > blank
-  const activePhoto = customPhoto || config?.heroPhoto || '';
+  // Use the photo defined in config / public folder
+  const heroPhoto = config?.heroPhoto || '/hero-photo.png';
 
   const handleScrollNext = () => {
     const el = document.getElementById('photos-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const processFile = (file) => {
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const dataUrl = event.target?.result;
-        if (dataUrl) {
-          setCustomPhoto(dataUrl);
-          try {
-            localStorage.setItem('gauri_disha_hero_photo', dataUrl);
-          } catch (e) {
-            console.warn('Could not save photo to localStorage', e);
-          }
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files?.[0];
-    processFile(file);
-  };
-
-  const handleRemovePhoto = (e) => {
-    e.stopPropagation();
-    setCustomPhoto(null);
-    try {
-      localStorage.removeItem('gauri_disha_hero_photo');
-    } catch (e) {
-      console.warn('Could not remove photo from localStorage', e);
-    }
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    processFile(file);
   };
 
   const user1 = config?.user1 || 'GAURI';
@@ -321,82 +252,17 @@ export default function HeroCongratulations({ config, onReplayMystery }) {
           </div>
 
           {/* POLAROID WHITE FRAME */}
-          <div 
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`relative bg-white p-3.5 sm:p-4 pb-8 sm:pb-10 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.12)] border transition-all duration-300 ${
-              isDragging 
-                ? 'border-pink-500 scale-105 rotate-0 shadow-[0_25px_60px_rgba(244,63,94,0.3)]' 
-                : 'border-slate-200/80 -rotate-1 hover:rotate-0'
-            }`}
-          >
+          <div className="relative bg-white p-3.5 sm:p-4 pb-8 sm:pb-10 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-slate-200/80 -rotate-1 transition-transform duration-300 hover:rotate-0">
             
-            {/* PHOTO AREA (INTERACTIVE DRAG & DROP / UPLOAD / BLANK PLACEHOLDER) */}
-            <div className="relative aspect-[4/3] sm:aspect-square w-full rounded-xs overflow-hidden bg-slate-100/90 border border-slate-200/60 flex flex-col items-center justify-center text-center group">
-              {activePhoto ? (
-                <>
-                  <img
-                    src={activePhoto}
-                    alt={`${user1} and ${user2}`}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  {/* Hover Actions Toolbar */}
-                  <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 text-white p-4">
-                    <button
-                      onClick={() => fileInputRef.current?.click()}
-                      className="px-4 py-2 rounded-xl bg-white/90 hover:bg-white text-slate-900 font-bold font-mono text-xs flex items-center gap-2 shadow-md hover:scale-105 active:scale-95 transition cursor-pointer"
-                    >
-                      <Camera className="w-4 h-4 text-orange-500" />
-                      <span>Change Photo</span>
-                    </button>
-
-                    <button
-                      onClick={handleRemovePhoto}
-                      className="px-4 py-1.5 rounded-xl bg-rose-600/90 hover:bg-rose-600 text-white font-bold font-mono text-xs flex items-center gap-1.5 shadow-md hover:scale-105 active:scale-95 transition cursor-pointer"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span>Remove Photo</span>
-                    </button>
-                  </div>
-                </>
-              ) : (
-                /* Blank Photo Placeholder with Click & Drag-Drop */
-                <div 
-                  onClick={() => fileInputRef.current?.click()}
-                  className={`w-full h-full flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-xs transition-colors cursor-pointer ${
-                    isDragging 
-                      ? 'border-pink-500 bg-pink-50/80' 
-                      : 'border-slate-300 bg-slate-50/70 hover:bg-slate-100/90'
-                  }`}
-                >
-                  <div className="w-14 h-14 rounded-full bg-white shadow-sm border border-slate-200 flex items-center justify-center text-rose-500 mb-3 group-hover:scale-110 transition-transform">
-                    <ImageIcon className="w-7 h-7" />
-                  </div>
-                  
-                  <div className="font-handwriting text-2xl font-bold text-slate-700">
-                    {isDragging ? 'Drop Photo Here!' : 'Click to Upload Photo'}
-                  </div>
-                  
-                  <p className="text-[11px] font-sans text-slate-400 mt-1 max-w-[200px] leading-tight">
-                    Choose any photo from your computer or drag & drop it here
-                  </p>
-
-                  <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 font-mono text-xs font-bold shadow-2xs group-hover:bg-rose-500 group-hover:text-white transition-colors">
-                    <Upload className="w-3.5 h-3.5" />
-                    <span>Select Photo</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Hidden File Input for instant local image upload */}
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handlePhotoUpload}
-                accept="image/*"
-                className="hidden"
+            {/* CLEAN PHOTO DISPLAY (NO BUTTONS / OVERLAYS) */}
+            <div className="relative aspect-[4/3] sm:aspect-square w-full rounded-xs overflow-hidden bg-slate-100/90 border border-slate-200/60 flex items-center justify-center">
+              <img
+                src={heroPhoto}
+                alt={`${user1} and ${user2}`}
+                onError={(e) => {
+                  e.currentTarget.src = "/hero-photo.jpg";
+                }}
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
