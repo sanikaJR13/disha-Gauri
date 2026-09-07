@@ -12,83 +12,70 @@
   }
   
   body {
-    background-color: #07090e;
-    color: #f1f5f9;
+    background-color: #f8fafc;
+    color: #1e293b;
     overflow-x: hidden;
   }
 
-  /* Custom scrollbar */
+  /* Custom bright scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #07090e;
+    background: #f1f5f9;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(34, 197, 94, 0.4);
+    background: rgba(244, 63, 94, 0.4);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(34, 197, 94, 0.8);
+    background: rgba(244, 63, 94, 0.7);
   }
 }
 
-/* Cyber Matrix Background Grid */
+/* Bright Cyber / Celebration Background Grid */
 .bg-cyber-grid {
-  background-size: 40px 40px;
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
 }
 
 .bg-dot-grid {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(244, 63, 94, 0.15) 1px, transparent 1px);
 }
 
-.bg-qr-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
-                    radial-gradient(rgba(34, 197, 94, 0.08) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
-  background-position: 0 0, 16px 16px;
-}
-
-/* Futuristic Glass Card */
-.glass-panel {
-  background: rgba(15, 20, 34, 0.7);
+/* Glass Card Bright Style */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.15);
-}
-
-.glass-card-glow {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.1);
-}
-
-.glow-text-green {
-  text-shadow: 0 0 12px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.3);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 0 15px rgba(244, 63, 94, 0.05);
 }
 
 .glow-text-gold {
-  text-shadow: 0 0 12px rgba(245, 158, 11, 0.6), 0 0 30px rgba(245, 158, 11, 0.3);
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.glow-text-green {
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 .glow-text-cyan {
-  text-shadow: 0 0 12px rgba(6, 182, 212, 0.6), 0 0 30px rgba(6, 182, 212, 0.3);
+  text-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
 }
 
-/* QR Corner Bracket Decor */
+/* QR Corner Bracket Decor for Light Mode */
 .corner-bracket-tl {
   position: absolute;
   top: 0;
   left: 0;
   width: 14px;
   height: 14px;
-  border-top: 2px solid #22c55e;
-  border-left: 2px solid #22c55e;
+  border-top: 2px solid #f97316;
+  border-left: 2px solid #f97316;
 }
 .corner-bracket-tr {
   position: absolute;
@@ -96,8 +83,8 @@
   right: 0;
   width: 14px;
   height: 14px;
-  border-top: 2px solid #22c55e;
-  border-right: 2px solid #22c55e;
+  border-top: 2px solid #f97316;
+  border-right: 2px solid #f97316;
 }
 .corner-bracket-bl {
   position: absolute;
@@ -105,8 +92,8 @@
   left: 0;
   width: 14px;
   height: 14px;
-  border-bottom: 2px solid #22c55e;
-  border-left: 2px solid #22c55e;
+  border-bottom: 2px solid #f97316;
+  border-left: 2px solid #f97316;
 }
 .corner-bracket-br {
   position: absolute;
@@ -114,20 +101,6 @@
   right: 0;
   width: 14px;
   height: 14px;
-  border-bottom: 2px solid #22c55e;
-  border-right: 2px solid #22c55e;
-}
-
-/* Polaroid Card Style */
-.polaroid-card {
-  background: #ffffff;
-  color: #1e293b;
-  padding: 12px 12px 24px 12px;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(34, 197, 94, 0.2);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.polaroid-card:hover {
-  transform: translateY(-8px) rotate(0deg) scale(1.03) !important;
-  box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(34, 197, 94, 0.4);
+  border-bottom: 2px solid #f97316;
+  border-right: 2px solid #f97316;
 }

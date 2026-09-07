@@ -10,7 +10,6 @@ import {
   Sparkles, 
   Briefcase, 
   Check, 
-  ShieldCheck, 
   Trophy,
   Activity
 } from 'lucide-react';
@@ -49,21 +48,21 @@ export default function RoommateConsistencyReport({ config, onEasterEgg }) {
 
   return (
     <section id="consistency-section" className="relative py-24 px-4 sm:px-6 max-w-5xl mx-auto">
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambience */}
+      <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-200/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-72 h-72 bg-amber-200/40 rounded-full blur-3xl pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center mb-14">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D1225] border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold tracking-widest uppercase mb-3">
-          <Activity className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold tracking-widest uppercase mb-3">
+          <Activity className="w-3.5 h-3.5 text-orange-500 animate-spin" />
           <span>ANALYSING DATA FROM: FIRST YEAR → FINAL YEAR</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white">
-          ROOMMATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 glow-text-cyan">CONSISTENCY REPORT</span>
+        <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900">
+          ROOMMATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-rose-600">CONSISTENCY REPORT</span>
         </h2>
-        <p className="mt-3 text-slate-400 text-sm sm:text-base font-sans max-w-lg mx-auto">
+        <p className="mt-3 text-slate-600 text-sm sm:text-base font-sans max-w-lg mx-auto">
           Deep diagnostic of four years of shared room dynamics, late-night laughs, and mutual survival tactics.
         </p>
       </div>
@@ -88,46 +87,42 @@ export default function RoommateConsistencyReport({ config, onEasterEgg }) {
               onClick={() => onEasterEgg && onEasterEgg(item.title)}
               className={`relative p-5 rounded-2xl border transition-all duration-300 backdrop-blur-xl cursor-pointer ${
                 isHighlight
-                  ? 'bg-gradient-to-br from-[#0B1020] via-emerald-950/40 to-[#0B1020] border-emerald-400/50 shadow-[0_0_30px_rgba(34,197,94,0.15)]'
-                  : 'bg-[#0B1020]/90 hover:bg-[#0D1225] border-slate-800 hover:border-slate-700 shadow-lg'
+                  ? 'bg-gradient-to-br from-amber-50/90 via-white to-rose-50/90 border-amber-300 shadow-md'
+                  : 'bg-white/90 hover:bg-white border-slate-200 hover:border-slate-300 shadow-sm'
               }`}
             >
-              {/* Corner Tech Brackets */}
-              <div className="corner-bracket-tl !w-3 !h-3 !border-emerald-500/40" />
-              <div className="corner-bracket-br !w-3 !h-3 !border-emerald-500/40" />
-
               <div className="flex items-start justify-between">
-                <div className="p-2.5 rounded-xl bg-[#0D1225] border border-slate-800 text-emerald-400 shadow-inner">
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-orange-600 shadow-inner">
                   <IconComponent className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono text-slate-500">
+                <span className="text-[10px] font-mono text-slate-400 font-bold">
                   METRIC_0{idx + 1}
                 </span>
               </div>
 
               <div className="mt-4">
-                <h3 className="text-xs sm:text-sm font-bold text-slate-200 font-display">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-800 font-display">
                   {item.title}
                 </h3>
 
                 <div className="mt-2.5">
-                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold ${
+                  <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-mono font-bold ${
                     item.color === 'amber'
-                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
                       : item.color === 'cyan'
-                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                      ? 'bg-sky-100 text-sky-800 border border-sky-300'
                       : item.color === 'rose'
-                      ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                      ? 'bg-rose-100 text-rose-800 border border-rose-300'
                       : item.color === 'gold'
-                      ? 'bg-gradient-to-r from-amber-500/30 to-rose-500/30 text-amber-300 border border-amber-400/50'
-                      : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                      ? 'bg-gradient-to-r from-amber-100 to-rose-100 text-amber-900 border border-amber-300'
+                      : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                   }`}>
                     {item.status.includes('✓') && <Check className="w-3 h-3 stroke-[3]" />}
                     <span>{item.status}</span>
                   </span>
                 </div>
 
-                <p className="mt-2 text-xs text-slate-400 font-sans leading-normal">
+                <p className="mt-2 text-xs text-slate-500 font-sans leading-normal">
                   {item.note}
                 </p>
               </div>
@@ -142,19 +137,19 @@ export default function RoommateConsistencyReport({ config, onEasterEgg }) {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0B1020] via-[#0D1225] to-[#0B1020] border border-amber-500/40 shadow-[0_0_40px_rgba(245,158,11,0.15)] text-center relative overflow-hidden backdrop-blur-xl"
+        className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-amber-50 via-white to-rose-50 border border-amber-300 shadow-lg text-center relative overflow-hidden backdrop-blur-xl"
       >
         <div className="relative z-10 flex flex-col items-center justify-center gap-2">
-          <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-300 bg-amber-950/40 border border-amber-600/40 px-3.5 py-1 rounded-full">
-            <Trophy className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-800 bg-amber-100 border border-amber-300 px-3.5 py-1 rounded-full font-bold">
+            <Trophy className="w-3.5 h-3.5 text-amber-600" />
             <span>FINAL SYSTEM VERDICT</span>
           </div>
 
-          <h3 className="text-2xl sm:text-4xl font-extrabold font-display text-white tracking-tight mt-1">
-            ROOMMATE CONSISTENCY: <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-pink-400 glow-text-gold">LEGENDARY 🏆</span>
+          <h3 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight mt-1">
+            ROOMMATE CONSISTENCY: <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-pink-600 to-rose-600">LEGENDARY 🏆</span>
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-300 font-sans max-w-lg mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans max-w-lg mt-1 font-medium">
             0% Roommate disputes recorded. 100% Shared memories & comedy unlocked.
           </p>
         </div>
