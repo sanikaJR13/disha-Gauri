@@ -11,11 +11,12 @@ export default function PageOneEntry({ config, onEnterCelebration }) {
     setTransitioning(true);
     playScanBeep(700);
 
+    // 15 seconds suspense loading duration
     setTimeout(() => {
       playSuccessFanfare();
       triggerPlacementConfetti();
       onEnterCelebration();
-    }, 2200);
+    }, 15000);
   };
 
   return (
@@ -81,13 +82,13 @@ export default function PageOneEntry({ config, onEnterCelebration }) {
                 LOADING...
               </div>
 
-              {/* Progress Loading Bar */}
+              {/* Progress Loading Bar (15s duration) */}
               <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200 p-0.5">
                 <motion.div
                   className="h-full bg-gradient-to-r from-orange-500 via-pink-500 to-rose-600 rounded-full shadow-sm"
                   initial={{ width: '0%' }}
                   animate={{ width: '100%' }}
-                  transition={{ duration: 2.0, ease: 'easeInOut' }}
+                  transition={{ duration: 15.0, ease: 'linear' }}
                 />
               </div>
             </motion.div>

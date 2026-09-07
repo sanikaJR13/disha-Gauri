@@ -13,7 +13,7 @@ export default function HeroCongratulations({ config, onEasterEgg }) {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-cyber-grid text-center overflow-hidden">
+    <section className="relative min-h-[95vh] flex flex-col items-center justify-center pt-16 sm:pt-20 pb-16 px-4 bg-cyber-grid text-center overflow-hidden">
       {/* Radiant ambient glow orbs */}
       <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-rose-200/50 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-amber-200/50 rounded-full blur-3xl pointer-events-none" />

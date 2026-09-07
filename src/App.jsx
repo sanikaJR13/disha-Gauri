@@ -5,7 +5,6 @@ import { toggleAudio, isAudioEnabled } from './utils/audio';
 
 // Components
 import PageOneEntry from './components/PageOneEntry';
-import TopPortalNav from './components/TopPortalNav';
 import HeroCongratulations from './components/HeroCongratulations';
 import RoommateConsistencyReport from './components/RoommateConsistencyReport';
 import RoommateJourneyTimeline from './components/RoommateJourneyTimeline';
@@ -80,7 +79,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060810] text-slate-100 font-sans selection:bg-amber-400 selection:text-black relative">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-rose-500 selection:text-white relative">
       
       {/* PAGE 1: MYSTERY ENTRY PAGE */}
       {currentPage === 'entry' && (
@@ -90,7 +89,7 @@ export default function App() {
         />
       )}
 
-      {/* PAGE 2: MAIN CELEBRATION EXPERIENCE */}
+      {/* PAGE 2: MAIN CELEBRATION EXPERIENCE (Uninterrupted full-screen flow) */}
       {currentPage === 'celebration' && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -98,15 +97,6 @@ export default function App() {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          {/* Slim Top Navigation */}
-          <TopPortalNav
-            config={config}
-            isSoundOn={isSoundOn}
-            toggleSound={handleToggleSound}
-            onReplayMystery={handleReplayMystery}
-            onOpenSettings={() => setIsSettingsOpen(true)}
-          />
-
           {/* Continuous Flow of Celebration Sections */}
           <main className="relative z-10">
             {/* Section 1: Grand Congratulations & Merging Cards */}
