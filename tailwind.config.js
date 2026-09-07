@@ -7,25 +7,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          bg: '#07090e',
-          dark: '#0a0d14',
-          card: '#0f1422',
-          cardHover: '#151c30',
-          border: 'rgba(56, 189, 248, 0.2)',
-          accent: '#00f0ff',
-          neonGreen: '#22c55e',
-          gold: '#f59e0b',
-          goldLight: '#fbbf24',
-          purple: '#a855f7',
-          pink: '#ec4899',
+        scrapbook: {
+          bg: '#faf7f2',
+          card: '#ffffff',
+          paper: '#fffdfa',
+          pink: '#fce7f3',
+          pinkDark: '#f472b6',
+          rose: '#ffe4e6',
+          yellow: '#fef3c7',
+          mint: '#dcfce7',
+          blue: '#e0f2fe',
+          lavender: '#f3e8ff',
+          peach: '#ffedd5',
+          ink: '#332f2e',
+          inkLight: '#57534e',
+          tape: 'rgba(253, 224, 71, 0.4)',
         }
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
-        handwriting: ['"Caveat"', '"Dancing Script"', 'cursive'],
-        display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Quicksand"', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        handwriting: ['"Caveat"', '"Patrick Hand"', 'cursive'],
+        display: ['"Space Grotesk"', '"Outfit"', 'sans-serif'],
+        journal: ['"Patrick Hand"', '"Caveat"', 'cursive'],
       },
       animation: {
         'scan': 'scanLine 3s linear infinite',

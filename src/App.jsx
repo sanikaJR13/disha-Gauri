@@ -58,7 +58,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-rose-500 selection:text-white relative">
+    <div className="min-h-screen bg-[#faf7f2] text-stone-800 font-sans selection:bg-rose-400 selection:text-white relative">
       
       {/* PAGE 1: MYSTERY ENTRY PAGE */}
       {currentPage === 'entry' && (
