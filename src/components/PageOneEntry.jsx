@@ -1,44 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { playScanBeep, playSuccessFanfare } from '../utils/audio';
 import { triggerPlacementConfetti } from '../utils/confetti';
 
 export default function PageOneEntry({ config, onEnterCelebration }) {
   const [transitioning, setTransitioning] = useState(false);
-  const [stepIndex, setStepIndex] = useState(0);
-
-  const steps = config.page1?.transitionSteps || [
-    "ACCESS GRANTED ✓",
-    "LOADING ROOMMATE HISTORY...",
-    "ANALYSING FRIENDSHIP DATA...",
-    "SEARCHING FOR THE BIGGEST PLOT TWIST..."
-  ];
 
   const handleOpen = () => {
     setTransitioning(true);
     playScanBeep(700);
 
     setTimeout(() => {
-      setStepIndex(1);
-      playScanBeep(850);
-    }, 850);
-
-    setTimeout(() => {
-      setStepIndex(2);
-      playScanBeep(1000);
-    }, 1700);
-
-    setTimeout(() => {
-      setStepIndex(3);
-      playScanBeep(1200);
-    }, 2600);
-
-    setTimeout(() => {
       playSuccessFanfare();
       triggerPlacementConfetti();
       onEnterCelebration();
-    }, 3600);
+    }, 2200);
   };
 
   return (
@@ -78,8 +55,8 @@ export default function PageOneEntry({ config, onEnterCelebration }) {
               initial={{ opacity: 0, scale: 0.9, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.05, filter: 'blur(8px)' }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col items-center gap-4"
+              transition={{ duration: 0.3 }}
+              className="w-full flex flex-col items-center"
             >
               {/* Single Prominent Glowing Button */}
               <button
@@ -92,35 +69,25 @@ export default function PageOneEntry({ config, onEnterCelebration }) {
                 <span className="tracking-wide">OPEN AT YOUR OWN RISK 👀</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform stroke-[2.5]" />
               </button>
-
             </motion.div>
           ) : (
             <motion.div
               key="transition-box"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="p-8 rounded-3xl bg-white/90 border border-slate-200 shadow-2xl backdrop-blur-xl text-center space-y-5 w-full"
+              className="p-8 rounded-3xl bg-white/90 border border-slate-200 shadow-xl backdrop-blur-xl text-center space-y-4 w-full"
             >
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-600 shadow-sm animate-pulse">
-                <ShieldCheck className="w-8 h-8" />
+              <div className="text-xl sm:text-2xl font-mono font-extrabold text-slate-800 tracking-wider">
+                LOADING...
               </div>
 
-              <div className="space-y-1.5">
-                <div className="text-lg sm:text-xl font-mono font-extrabold text-slate-800">
-                  {steps[stepIndex]}
-                </div>
-                <p className="text-xs font-mono text-slate-500">
-                  Unlocking Gauri & Disha celebration experience...
-                </p>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200 p-0.5">
+              {/* Progress Loading Bar */}
+              <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200 p-0.5">
                 <motion.div
                   className="h-full bg-gradient-to-r from-orange-500 via-pink-500 to-rose-600 rounded-full shadow-sm"
-                  initial={{ width: '15%' }}
-                  animate={{ width: `${(stepIndex + 1) * 25}%` }}
-                  transition={{ duration: 0.7 }}
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 2.0, ease: 'easeInOut' }}
                 />
               </div>
             </motion.div>
