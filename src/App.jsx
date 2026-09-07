@@ -6,15 +6,10 @@ import { toggleAudio, isAudioEnabled } from './utils/audio';
 // Components
 import PageOneEntry from './components/PageOneEntry';
 import HeroCongratulations from './components/HeroCongratulations';
-import RoommateConsistencyReport from './components/RoommateConsistencyReport';
-import RoommateJourneyTimeline from './components/RoommateJourneyTimeline';
-import PlotTwistMeter from './components/PlotTwistMeter';
-import CompatibilityScore from './components/CompatibilityScore';
-import AchievementsUnlocked from './components/AchievementsUnlocked';
+import PhotoMemories from './components/PhotoMemories';
 import PersonalMessage from './components/PersonalMessage';
 import FinalSurprise from './components/FinalSurprise';
 import Footer from './components/Footer';
-import EasterEggToast from './components/EasterEggToast';
 import PersonalizeModal from './components/PersonalizeModal';
 
 export default function App() {
@@ -31,14 +26,7 @@ export default function App() {
   });
 
   const [currentPage, setCurrentPage] = useState('entry'); // 'entry' (Page 1) or 'celebration' (Page 2)
-  const [isSoundOn, setIsSoundOn] = useState(true);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [activeEasterEgg, setActiveEasterEgg] = useState(null);
-
-  const handleToggleSound = () => {
-    const next = toggleAudio();
-    setIsSoundOn(next);
-  };
 
   const handleEnterCelebration = () => {
     setCurrentPage('celebration');
@@ -48,15 +36,6 @@ export default function App() {
   const handleReplayMystery = () => {
     setCurrentPage('entry');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleTriggerEasterEgg = (context = "") => {
-    const list = config.easterEggs || defaultPersonalization.easterEggs;
-    const randomEgg = list[Math.floor(Math.random() * list.length)];
-    setActiveEasterEgg(randomEgg);
-    setTimeout(() => {
-      setActiveEasterEgg((curr) => (curr === randomEgg ? null : curr));
-    }, 3500);
   };
 
   const handleSaveConfig = (updatedData) => {
@@ -89,7 +68,7 @@ export default function App() {
         />
       )}
 
-      {/* PAGE 2: MAIN CELEBRATION EXPERIENCE (Uninterrupted full-screen flow) */}
+      {/* PAGE 2: MAIN CELEBRATION EXPERIENCE */}
       {currentPage === 'celebration' && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -97,40 +76,26 @@ export default function App() {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          {/* Continuous Flow of Celebration Sections */}
           <main className="relative z-10">
-            {/* Section 1: Grand Congratulations & Merging Cards */}
-            <HeroCongratulations config={config} onEasterEgg={handleTriggerEasterEgg} />
+            {/* 1. Congratulations Message */}
+            <HeroCongratulations config={config} />
 
-            {/* Section 2: Roommate Consistency Report */}
-            <RoommateConsistencyReport config={config} onEasterEgg={handleTriggerEasterEgg} />
+            {/* 2. Photo Gallery & Memories */}
+            <div id="photos-section">
+              <PhotoMemories config={config} />
+            </div>
 
-            {/* Section 3: The Roommate Journey */}
-            <RoommateJourneyTimeline config={config} onEasterEgg={handleTriggerEasterEgg} />
-
-            {/* Section 4: The Plot Twist Odds Meter */}
-            <PlotTwistMeter config={config} onEasterEgg={handleTriggerEasterEgg} />
-
-            {/* Section 5: Roommate Compatibility Score */}
-            <CompatibilityScore config={config} onEasterEgg={handleTriggerEasterEgg} />
-
-            {/* Section 6: Achievements Unlocked */}
-            <AchievementsUnlocked config={config} onEasterEgg={handleTriggerEasterEgg} />
-
-            {/* Section 7: Personal Message */}
+            {/* 3. Personal Message for Them */}
             <PersonalMessage config={config} />
 
-            {/* Section 8: One More Surprise & Interactive Cake */}
+            {/* 4. One More Surprise & Box Telling to Cut the Cake */}
             <FinalSurprise config={config} />
           </main>
 
-          {/* Footer */}
+          {/* 5. Heartfelt Footer */}
           <Footer config={config} onReplayMystery={handleReplayMystery} />
         </motion.div>
       )}
-
-      {/* Easter Egg Floating Toast */}
-      <EasterEggToast message={activeEasterEgg} onClose={() => setActiveEasterEgg(null)} />
 
       {/* Settings / Personalization Drawer */}
       <PersonalizeModal
